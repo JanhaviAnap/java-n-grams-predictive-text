@@ -9,7 +9,10 @@
 import java.util.*;
 
 public class MarkovWordOne implements IMarkovModel {
-    private String[] myText;
+	String testString = "this is just a test yes this is a simple test";
+	String[] myText = testString.split("\\s+");
+
+    //private String[] myText;
     private Random myRandom;
     
     public MarkovWordOne() {
@@ -33,10 +36,9 @@ public class MarkovWordOne implements IMarkovModel {
 	private int indexOf(String[] words, String target, int start) {
 		for (int i = start; i < words.length; i++) {
 			if (words[i].equals(target)) {
-				System.out.println("Found \"" + words[i] + "\" at index " + i);
+				//System.out.println("Found \"" + words[i] + "\" at index " + i);
 				return i;
 			}
-
 		}
     	return -1;
 	}
@@ -64,12 +66,19 @@ public class MarkovWordOne implements IMarkovModel {
 	
 	private ArrayList<String> getFollows(String key) {
 	    ArrayList<String> follows = new ArrayList<String>();
+	    int keyIndex = indexOf(myText, key, 0);
+	    if (keyIndex != -1) {
+			for (int i = keyIndex + 1; i < myText.length; i++) {
+				follows.add(myText[i]);
+			}
+		}
 	    return follows;
     }
 
 	public static void main(String[] args) {
 		MarkovWordOne mwo = new MarkovWordOne();
-		mwo.testIndexOf();
+		//mwo.testIndexOf();
+		//mwo.getRandomText(3);
 	}
 
 }
