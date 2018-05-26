@@ -29,7 +29,7 @@ public class MarkovWordOne implements IMarkovModel {
 
 	public void testIndexOf() {
     	String testString = "this is just a test yes this is a simple test";
-		String[] words = testString.split("\\s+");
+		String[] words = testString.split("\\s+" );
 		indexOf(words, "yes", 0);
 	}
 
