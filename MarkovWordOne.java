@@ -30,7 +30,8 @@ public class MarkovWordOne implements IMarkovModel {
 	public void testIndexOf() {
     	String testString = "this is just a test yes this is a simple test";
 		String[] words = testString.split("\\s+" );
-		indexOf(words, "yes", 0);
+		int wordIndex = indexOf(words, "yes", 0);
+		System.out.println(wordIndex);
 	}
 
 	private int indexOf(String[] words, String target, int start) {
@@ -77,7 +78,7 @@ public class MarkovWordOne implements IMarkovModel {
 
 	public static void main(String[] args) {
 		MarkovWordOne mwo = new MarkovWordOne();
-		//mwo.testIndexOf();
+		mwo.testIndexOf();
 		//mwo.getRandomText(3);
 	}
 
