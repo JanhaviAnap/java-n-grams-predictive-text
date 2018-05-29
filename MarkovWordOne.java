@@ -9,17 +9,17 @@
 import java.util.*;
 
 public class MarkovWordOne implements IMarkovModel {
-	String testString = "this is just a test yes this is a simple test";
-	String[] myText = testString.split("\\s+");
 
-    //private String[] myText;
+    private String[] myText;
     private Random myRandom;
     
     public MarkovWordOne() {
+
         myRandom = new Random();
     }
     
     public void setRandom(int seed) {
+
         myRandom = new Random(seed);
     }
     
@@ -30,15 +30,14 @@ public class MarkovWordOne implements IMarkovModel {
 	public void testIndexOf() {
     	String testString = "this is just a test yes this is a simple test";
 		String[] words = testString.split("\\s+" );
-		int wordIndex = indexOf(words, "yes", 0);
+		int wordIndex = indexOf(words, "this", 3);
 		System.out.println(wordIndex);
 	}
 
 	private int indexOf(String[] words, String target, int start) {
 		for (int i = start; i < words.length; i++) {
 			if (words[i].equals(target)) {
-				//System.out.println("Found \"" + words[i] + "\" at index " + i);
-				return i;
+			    return i;
 			}
 		}
     	return -1;
@@ -52,6 +51,7 @@ public class MarkovWordOne implements IMarkovModel {
 		sb.append(" ");
 		for(int k=0; k < numWords-1; k++){
 		    ArrayList<String> follows = getFollows(key);
+            //System.out.println("Key: "+key+"\tValue: "+follows);
 		    if (follows.size() == 0) {
 		        break;
 		    }
@@ -66,20 +66,24 @@ public class MarkovWordOne implements IMarkovModel {
 	}
 	
 	private ArrayList<String> getFollows(String key) {
-	    ArrayList<String> follows = new ArrayList<String>();
-	    int keyIndex = indexOf(myText, key, 0);
-	    if (keyIndex != -1) {
-			for (int i = keyIndex + 1; i < myText.length; i++) {
-				follows.add(myText[i]);
-			}
-		}
-	    return follows;
+
+        ArrayList<String> follows = new ArrayList<String>();
+        int index = indexOf(myText, key, 0);
+
+        while (index!=-1) {
+            follows.add(myText[index+1]);
+            index = indexOf(myText, key, index+1);
+        }
+
+        return follows;
     }
 
 	public static void main(String[] args) {
-		MarkovWordOne mwo = new MarkovWordOne();
-		mwo.testIndexOf();
-		//mwo.getRandomText(3);
+		//MarkovWordOne mwo = new MarkovWordOne();
+		//mwo.setTraining("this is just a test yes this is a simple test");
+		//mwo.testIndexOf();
+		//String text = mwo.getRandomText(5);
+		//System.out.println(text);
 	}
 
 }
