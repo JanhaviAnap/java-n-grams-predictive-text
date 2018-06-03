@@ -16,14 +16,14 @@ public class WordGram {
     }
 
     public int length(){
-        // TODO: Complete this method
-        return 0;
+        return myWords.length;
     }
 
     public String toString(){
         String ret = "";
-        // TODO: Complete this method
-
+        for (String word : myWords) {
+            ret = ret + word + " ";
+        }
         return ret.trim();
     }
 
@@ -40,6 +40,19 @@ public class WordGram {
         // you lose the first word
         // TODO: Complete this method
         return out;
+    }
+
+    public static void main(String[] args) {
+        String[] source = new String[3];
+        source[0] = "Cheese";
+        source[1] = "Pepperoni";
+        source[2] = "Black Olives";
+        WordGram wg = new WordGram(source, 0, 3);
+        System.out.println("WordGram length():");
+        System.out.println(wg.length());
+        System.out.println("WordGram toString():");
+        System.out.println(wg.toString());
+
     }
 
 }
