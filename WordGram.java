@@ -42,17 +42,6 @@ public class WordGram {
         return out;
     }
 
-    public static void main(String[] args) {
-        String[] source = new String[3];
-        source[0] = "Cheese";
-        source[1] = "Pepperoni";
-        source[2] = "Black Olives";
-        WordGram wg = new WordGram(source, 0, 3);
-        System.out.println("WordGram length():");
-        System.out.println(wg.length());
-        System.out.println("WordGram toString():");
-        System.out.println(wg.toString());
 
-    }
 
 }
