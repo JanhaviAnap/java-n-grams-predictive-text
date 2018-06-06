@@ -29,5 +29,12 @@ public class WordGramTester {
 			}
 		}
 	}
-	
+
+	public static void main(String[] args) {
+
+		WordGramTester wgt = new WordGramTester();
+		wgt.testWordGram();
+
+	}
+
 }
