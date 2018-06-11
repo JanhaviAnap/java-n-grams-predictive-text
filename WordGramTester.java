@@ -10,7 +10,17 @@ public class WordGramTester {
 			System.out.println(index+"\t"+wg.length()+"\t"+wg);
 		}
 	}
-	
+
+	public void testShiftAdd(){
+		String source = "one two three";
+		String[] words = source.split("\\s+");
+		int size = 3;
+		WordGram wg = new WordGram(words,0,size);
+		WordGram shifted = wg.shiftAdd("four");
+		System.out.print(shifted);
+	}
+
+
 	public void testWordGramEquals(){
 		String source = "this is a test this is a test this is a test of words";
 		String[] words = source.split("\\s+");
@@ -34,8 +44,8 @@ public class WordGramTester {
 
 		WordGramTester wgt = new WordGramTester();
 		//wgt.testWordGram();
-		wgt.testWordGramEquals();
-
+		//wgt.testWordGramEquals();
+		wgt.testShiftAdd();
 	}
 
 }
