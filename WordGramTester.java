@@ -17,7 +17,11 @@ public class WordGramTester {
 		int size = 3;
 		WordGram wg = new WordGram(words,0,size);
 		WordGram shifted = wg.shiftAdd("four");
-		System.out.print(shifted);
+        System.out.println("Old WordGram:");
+        System.out.println(wg + "\n");
+        System.out.println("Shifted WordGram:");
+		System.out.println(shifted);
+
 	}
 
 
