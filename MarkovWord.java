@@ -12,7 +12,6 @@ public class MarkovWord implements IMarkovModel {
     }
 
     public void setRandom(int seed) {
-
         myRandom = new Random(seed);
     }
 
@@ -21,16 +20,28 @@ public class MarkovWord implements IMarkovModel {
     }
 
     public void testIndexOf() {
-        String testString = "this is just a test yes this is a simple test";
-        String[] words = testString.split("\\s+");
-        int wordIndex = indexOf(words, "this", 3);
+        String testWords = "this is just a test yes this is a simple test";
+        String[] words = testWords.split("\\s+");
+        String testWordsgram = "this is a";
+        String[] wordgramArray = testWordsgram.split("\\s+");
+        WordGram wg = new WordGram(wordgramArray, 0, 3);
+        int wordIndex = indexOf(words, wg, 0);
         System.out.println(wordIndex);
     }
 
-    private int indexOf(String[] words, String target, int start) {
-        for (int i = start; i < words.length; i++) {
-            if (words[i].equals(target)) {
-                return i;
+    private int indexOf(String[] words, WordGram target, int start) {
+        for (int i = start; i < words.length - target.length(); i++) {
+            if (words[i].equals(target.wordAt(0))) {
+                boolean targetFound = true;
+                for (int k = 0; k < target.length(); k++) {
+                    if (!words[k+i].equals(target.wordAt(k))) {
+                        targetFound = false;
+                        break;
+                    }
+                    if (targetFound) {
+                        return i;
+                    }
+                }
             }
         }
         return -1;
@@ -58,24 +69,23 @@ public class MarkovWord implements IMarkovModel {
         return sb.toString().trim();
     }
 
-    private ArrayList<String> getFollows(String key) {
+
+    private ArrayList<String> getFollows(WordGram kGram) {
 
         ArrayList<String> follows = new ArrayList<String>();
-        int index = indexOf(myText, key, 0);
+        int index = indexOf(myText, kGram, 0);
 
         while (index != -1) {
-            follows.add(myText[index + 1]);
-            index = indexOf(myText, key, index + 1);
+            follows.add(myText[index + myOrder]);
+            index = indexOf(myText, kGram, index + 1);
         }
 
         return follows;
     }
 
     public static void main(String[] args) {
-        //MarkovWordOne mwo = new MarkovWordOne();
-        //mwo.setTraining("this is just a test yes this is a simple test");
-        //mwo.testIndexOf();
-        //String text = mwo.getRandomText(5);
+        MarkovWord mw = new MarkovWord(0);
+        mw.testIndexOf();
         //System.out.println(text);
     }
 }
