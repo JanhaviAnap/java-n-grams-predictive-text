@@ -1,4 +1,6 @@
-import java.util.*;
+package week3.ngram;
+
+import java.util.ArrayList;
 
 public class WordGramTester {
 	public void testWordGram(){
@@ -10,21 +12,7 @@ public class WordGramTester {
 			System.out.println(index+"\t"+wg.length()+"\t"+wg);
 		}
 	}
-
-	public void testShiftAdd(){
-		String source = "one two three";
-		String[] words = source.split("\\s+");
-		int size = 3;
-		WordGram wg = new WordGram(words,0,size);
-		WordGram shifted = wg.shiftAdd("four");
-        System.out.println("Old WordGram:");
-        System.out.println(wg + "\n");
-        System.out.println("Shifted WordGram:");
-		System.out.println(shifted);
-
-	}
-
-
+	
 	public void testWordGramEquals(){
 		String source = "this is a test this is a test this is a test of words";
 		String[] words = source.split("\\s+");
@@ -43,13 +31,24 @@ public class WordGramTester {
 			}
 		}
 	}
+	
+	public void testShiftAdd() {
+		String source = "this is a test this is a test this is a test of words";
+		String[] words = source.split("\\s+");
+		int size = 4;
+		int index = 2;
+		WordGram wg = new WordGram(words,index,size);
+		
+		System.out.println("Original:\t"+wg);
+		System.out.println("Shifted:\t"+wg.shiftAdd("Shift"));
 
-	public static void main(String[] args) {
-
-		WordGramTester wgt = new WordGramTester();
-		//wgt.testWordGram();
-		//wgt.testWordGramEquals();
-		wgt.testShiftAdd();
 	}
-
+	
+	public static void main(String[] args) {
+		WordGramTester t = new WordGramTester();
+//		t.testWordGram();
+//		t.testWordGramEquals();
+		t.testShiftAdd();
+	}
+	
 }
